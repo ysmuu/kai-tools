@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Unit Converter (Length) | Kai’s Tools</title>
+<style>
+  body { font-family: sans-serif; max-width: 600px; margin: 2rem auto; padding: 1rem; }
+  input, select, button { font-size: 1rem; margin-top: 1rem; width: 100%; padding: 0.5rem; }
+  #result { margin-top: 1rem; font-weight: bold; }
+</style>
+</head>
+<body>
+<h1>Unit Converter (Length)</h1>
+<input id="value" type="number" placeholder="Enter value" />
+<select id="fromUnit">
+  <option value="m">Meters</option>
+  <option value="km">Kilometers</option>
+  <option value="ft">Feet</option>
+  <option value="yd">Yards</option>
+  <option value="mi">Miles</option>
+</select>
+<select id="toUnit">
+  <option value="m">Meters</option>
+  <option value="km">Kilometers</option>
+  <option value="ft">Feet</option>
+  <option value="yd">Yards</option>
+  <option value="mi">Miles</option>
+</select>
+<button onclick="convert()">Convert</button>
+<div id="result"></div>
+
+<script>
+  const factors = {
+    m: 1,
+    km: 1000,
+    ft: 0.3048,
+    yd: 0.9144,
+    mi: 1609.344,
+  };
+
+  function convert() {
+    const val = parseFloat(document.getElementById('value').value);
+    const from = document.getElementById('fromUnit').value;
+    const to = document.getElementById('toUnit').value;
+    const resultDiv = document.getElementById('result');
+
+    if (isNaN(val)) {
+      resultDiv.textContent = 'Please enter a valid number';
+      return;
+    }
+
+    const meters = val * factors[from];
+    const converted = meters / factors[to];
+    resultDiv.textContent = `${val} ${from} = ${converted.toFixed(4)} ${to}`;
+  }
+</script>
+</body>
+</html>
