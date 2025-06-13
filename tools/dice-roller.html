@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dice Roller | Kai’s Tools</title>
+<style>
+  body { font-family: sans-serif; max-width: 600px; margin: 2rem auto; padding: 1rem; text-align: center; }
+  button { font-size: 1.5rem; padding: 0.5rem 1rem; margin-top: 1rem; }
+  #result { font-size: 3rem; margin-top: 2rem; font-weight: bold; }
+</style>
+</head>
+<body>
+<h1>Dice Roller (1–6)</h1>
+<button onclick="roll()">Roll Dice</button>
+<div id="result">🎲</div>
+
+<script>
+  function roll() {
+    const num = Math.floor(Math.random() * 6) + 1;
+    const diceFaces = ['🎲', '⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+    document.getElementById('result').textContent = diceFaces[num];
+  }
+</script>
+</body>
+</html>
