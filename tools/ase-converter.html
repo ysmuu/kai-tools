@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Case Converter | Kai’s Tools</title>
+<style>
+  body { font-family: sans-serif; max-width: 600px; margin: 2rem auto; padding: 1rem; }
+  textarea { width: 100%; height: 120px; padding: 0.5rem; font-size: 1rem; }
+  select, button { margin-top: 1rem; font-size: 1rem; }
+  #output { margin-top: 1rem; padding: 1rem; border: 1px solid #ccc; min-height: 80px; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<h1>Case Converter</h1>
+<textarea id="inputText" placeholder="Type or paste text here..."></textarea>
+<br />
+<select id="caseType">
+  <option value="uppercase">UPPERCASE</option>
+  <option value="lowercase">lowercase</option>
+  <option value="titlecase">Title Case</option>
+</select>
+<button onclick="convert()">Convert</button>
+
+<div id="output"></div>
+
+<script>
+  function toTitleCase(str) {
+    return str.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+  }
+
+  function convert() {
+    const text = document.getElementById('inputText').value;
+    const type = document.getElementById('caseType').value;
+    let result = '';
+
+    if(type === 'uppercase') {
+      result = text.toUpperCase();
+    } else if(type === 'lowercase') {
+      result = text.toLowerCase();
+    } else if(type === 'titlecase') {
+      result = toTitleCase(text);
+    }
+
+    document.getElementById('output').textContent = result;
+  }
+</script>
+</body>
+</html>
