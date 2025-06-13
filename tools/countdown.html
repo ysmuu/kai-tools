@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Countdown Timer | Kai’s Tools</title>
+<style>
+  body { font-family: monospace, monospace; max-width: 400px; margin: 2rem auto; padding: 1rem; text-align: center; }
+  input, button { font-size: 1.2rem; padding: 0.5rem; margin-top: 1rem; width: 100%; }
+  #display { font-size: 3rem; margin-top: 2rem; font-weight: bold; }
+</style>
+</head>
+<body>
+<h1>Countdown Timer</h1>
+<input id="secondsInput" type="number" placeholder="Enter seconds" />
+<button onclick="start()">Start</button>
+<div id="display">00:00</div>
+
+<script>
+  let timer;
+  function start() {
+    clearInterval(timer);
+    let seconds = parseInt(document.getElementById('secondsInput').value);
+    if (isNaN(seconds) || seconds <= 0) {
+      alert('Enter a positive number of seconds');
+      return;
+    }
+    const display = document.getElementById('display');
+
+    timer = setInterval(() => {
+      let mins = Math.floor(seconds / 60);
+      let secs = seconds % 60;
+      display.textContent = `${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
+      if (seconds <= 0) {
+        clearInterval(timer);
+        alert('Time is up!');
+      }
+      seconds--;
+    }, 1000);
+  }
+</script>
+</body>
+</html>
