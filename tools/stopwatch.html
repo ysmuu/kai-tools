@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stopwatch | Kai’s Tools</title>
+<style>
+  body { font-family: monospace; max-width: 400px; margin: 2rem auto; padding: 1rem; text-align: center; }
+  #display { font-size: 3rem; margin: 2rem 0; }
+  button {
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #0366d6;
+    color: white;
+  }
+</style>
+</head>
+<body>
+<h1>Stopwatch</h1>
+<div id="display">00:00:00</div>
+<button onclick="start()">Start</button>
+<button onclick="stop()">Stop</button>
+<button onclick="reset()">Reset</button>
+
+<script>
+  let timer;
+  let ms = 0;
+
+  function updateDisplay() {
+    let totalSeconds = Math.floor(ms / 100);
+    let hours = Math.floor(totalSeconds / 3600);
+    let mins = Math.floor((totalSeconds % 3600) / 60);
+    let secs = totalSeconds % 60;
+    document.getElementById('display').textContent =
+      `${hours.toString().padStart(2,'0')}:${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
+  }
+
+  function start() {
+    if (timer) return;
+    timer = setInterval(() => {
+      ms++;
+      updateDisplay();
+    }, 10);
+  }
+
+  function stop() {
+    clearInterval(timer);
+    timer = null;
+  }
+
+  function reset() {
+    stop();
+    ms = 0;
+    updateDisplay();
+  }
+</script>
+
+<div style="text-align:center; margin-top: 2rem;">
+  <a href="https://ysmu.lol" style="
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #0366d6;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+  ">← Back to ysmu.lol</a>
+</div>
+</body>
+</html>
