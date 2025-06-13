@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Color Picker | Kai’s Tools</title>
+<style>
+  body { font-family: sans-serif; max-width: 600px; margin: 2rem auto; padding: 1rem; }
+  input[type=color] { width: 100%; height: 60px; border: none; cursor: pointer; }
+  #hexValue { font-size: 1.5rem; margin-top: 1rem; font-weight: bold; text-align: center; }
+  #preview { height: 100px; margin-top: 1rem; border-radius: 8px; }
+</style>
+</head>
+<body>
+<h1>Color Picker</h1>
+<input type="color" id="colorPicker" value="#ff0000" />
+<div id="hexValue">#ff0000</div>
+<div id="preview" style="background:#ff0000"></div>
+
+<script>
+  const picker = document.getElementById('colorPicker');
+  const hexValue = document.getElementById('hexValue');
+  const preview = document.getElementById('preview');
+
+  picker.addEventListener('input', () => {
+    hexValue.textContent = picker.value;
+    preview.style.backgroundColor = picker.value;
+  });
+</script>
+</body>
+</html>
